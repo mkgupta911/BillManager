@@ -1,0 +1,29 @@
+<p>recipes-list works!</p>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-sucess">New Recipe</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="list-group">
+            <a href="#" class="list-group-item clearfix" *ngFor="let x of recipes"> <!--to make this item clickable  -->
+                <div class="pull-left">
+                    <div class="list-group-item-heading">
+                        <h4>{{x.name}}</h4>
+                    </div>
+
+                    <div class="list-group-item-text">
+                        <h5>{{x.description}}</h5>
+                    </div>
+                </div>
+
+
+                <span class="pull-right"><img [src]="x.imagePath" alt="{{x.name}}" class="image-responsive"
+                        style="max-height:60px ;"></span>
+            </a>
+        </div>
+    </div>
+</div>
