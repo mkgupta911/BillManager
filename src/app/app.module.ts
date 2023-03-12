@@ -3,29 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { headerComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
-import { RecipesDetailsComponent } from './recipes/recipes-details/recipes-details.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { BillInformationComponent } from './bill-information/bill-information.component';
+import { HeaderComponent } from './header/header.component';
+import { ItemsComponent } from './items/items.component';
 
-import { RecipeListItemComponent } from './recipes/recipes-list/recipes-list-item/recipe-list-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    headerComponent,
-    RecipesComponent,
-    RecipesListComponent,
-    RecipesDetailsComponent,    
-    RecipeListItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent
+    BillInformationComponent,
+    HeaderComponent,
+    ItemsComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

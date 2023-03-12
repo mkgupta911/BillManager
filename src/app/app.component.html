@@ -1,4 +1,86 @@
-<app-header></app-header>
-<app-recipes></app-recipes>
-<hr>
-<app-shopping-list></app-shopping-list>
+<!-- <div class="container">
+  
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>My App</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+  
+      <mat-toolbar-row>
+        <span>Second Line</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+ 
+    <mat-grid-list cols="4" rowHeight="50px" class="border">
+      <mat-grid-tile 
+          *ngFor="let tile of tiles"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.background]="tile.color">
+        {{tile.text}}
+      </mat-grid-tile>
+    </mat-grid-list>
+
+     <mat-grid-list cols="11" rowHeight="30px" class="border">
+      <mat-grid-tile
+          *ngFor="let tile of tiles2"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.background]="tile.color">
+        {{tile.text}}
+        <mat-grid-tile-header></mat-grid-tile-header>
+      </mat-grid-tile>
+    </mat-grid-list>
+    
+    
+
+    <mat-grid-list cols="6" rowHeight="50px" class="border">
+      <mat-grid-tile
+          *ngFor="let tile of tiles4"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.background]="tile.color"> 
+        {{tile.text}}
+      </mat-grid-tile>
+      
+     
+    </mat-grid-list>
+
+</div>
+
+  -->
+
+<!-- <mat-grid-list rowHeight="50px" class="border">
+    <mat-grid-tile class="grid">tile.text</mat-grid-tile>
+    <mat-grid-tile class="grid">tile.text</mat-grid-tile>
+    <mat-grid-tile class="grid">tile.text</mat-grid-tile>
+    
+   
+  </mat-grid-list> -->
+
+<!-- <mat-grid-list cols="4" rowHeight="50px" class="border">
+  
+</mat-grid-list> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col sx-12">
+      <div><app-header></app-header></div>
+      <div><app-bill-information></app-bill-information></div>
+      <div><app-items></app-items></div>
+      <div><app-header></app-header></div>
+      <div><app-header></app-header></div>
+      <div><app-header></app-header></div>
+    </div>
+  </div>
+</div>
