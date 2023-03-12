@@ -9,7 +9,7 @@ npm install -g angular-cli-ghpages
 
 CMD
 
-Build  ng build --configuration production --base-href "https://mkgupta911.github.io/billmanager"
+Build  npm run build-prod "https://mkgupta911.github.io/BillManager"
 
 Upload
 ngh --dir dist/<folder>
