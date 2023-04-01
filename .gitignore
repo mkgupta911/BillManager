@@ -105,3 +105,6 @@ dist
 
 # angular directories
 .angular/
+
+# VS Files
+.vs/
