@@ -3,33 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MatGridListModule} from '@angular/material/grid-list';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { BillInformationComponent } from './bill-information/bill-information.component';
-import { HeaderComponent } from './header/header.component';
-import { ItemsComponent } from './items/items.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {DataService } from "./data-services/supplier-data";
+import { SupplyReportComponent } from './supply-report/supply-report.component';
+import {MaterialExampleModule} from './material.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BillInformationComponent,
-    HeaderComponent,
-    ItemsComponent
-    
+    SupplyReportComponent,    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
     BrowserAnimationsModule,
-    MatGridListModule,
-    MatIconModule,
-    MatToolbarModule
+    MaterialExampleModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

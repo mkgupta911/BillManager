@@ -1,25 +1,14 @@
-import { NgIf } from "@angular/common";
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
-
- export module BillInfo{
-  export interface ISupplierInformation{
-    loginid:string,
-    password:string,
-    name:string;
-    address:string;
-    stateCode:number;
-    GSTIN:string;
-    contacts:number[];
-    mandiLicense:number;
-    mandiCode:number;
-    bankDetail:{
-      name:string;
+export interface ISupplierInformation{
+    id:number;
+    name?:string;
+    address?:string;
+    stateCode?:number;
+    GSTIN?:string;
+    contacts?:number[];
+    mandiLicense?:number;
+    mandiCode?:number;
+    bankDetail?:{
+      name?:string;
       accountNo?:number;
       ifsc?:string;
       branch?:string;
@@ -31,31 +20,34 @@ export interface Tile {
     address?:string;
     stateCode?:number;
     GSTIN?:string;
+    isLocal?:boolean =false;
   }
 
   export class Detail{
     srNo:number =0;
     date:Date = new Date();
     niner:string="9-2";
-    ninerno:number[]=[];
-    gatepass:number[]=[];
+    is9R2:boolean = false;
+    ninerno:number=0;
+    gatepass:number=0;
     rrno:number=0;
     transporterName:string="";
     vehicleNumber:string='';
     insurance:string="";
     dueFreight:number=0;
     totalFreight:number=0;
-    items:Item[]=[]
+    items:Item[]=[];
+    agent:string="";
   }
 
-  export interface Item{
-    name:string;
-    bags:number;
-    hsn:string;
-    packing:number;
-    weight:number;
-    rate:number;
-    roundOff:number;
+  export class Item{
+    name?:string;
+    bags?:number;
+    hsn?:string;
+    packing?:number;
+    weight?:number=0;
+    rate?:number=0;
+    roundOff?:number;
   }
    
   export enum HSNS{
@@ -71,8 +63,11 @@ export interface Tile {
     Invoice
   }
   export enum GSTStateCode{
-    "Uttar Pradesh"="09"
+    "Uttar Pradesh"=9
   }
-
-  
- }
+  export enum CopyType{
+    Original,
+    Duplicate,
+    Office
+  }
+ 

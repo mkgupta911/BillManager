@@ -1,0 +1,188 @@
+
+<div style="padding: 10px;">
+  
+    <div class="container">
+      <div class="bill-report">
+        <div class="header">
+            <div class="block col-25">
+              <div style="padding: 2px;">
+                <img [src]="ganeshaImage">
+              </div>
+            </div>
+            <div class="block col-50">
+              <div class="block-cell" style="text-align: center;">
+                <span class="bold">Bill Of Supply</span><br>
+                <span class="xs-small">All Subject to Hamirpur Jurisdiction</span>
+              </div>
+            </div>
+            <div class="block col-25">
+              <div class="block-cell" style="height: 50px;">
+                <span class="xs-small top-right" >{{CopyEnum[copyInfo]}} Copy</span>
+              </div>
+            </div>
+        </div>
+        <div class="header" style="height: 265px;">
+          <div class="block col-45" style="height: 100%;">
+            <div class="block-cell" style="height: 50%;border-bottom: 1px solid black;">
+              <span class="bold x-large">
+                M/s. {{supplier?.name}}
+              </span>
+              <br>
+              {{supplier?.address}}
+              <br>
+              State: {{GSTCode[_sStateCode]}}, &nbsp;&nbsp;Code: {{util.padNumber(_sStateCode,'0',2)}}<br>
+              GSTIN: <span class="bold">{{supplier?.GSTIN}}</span><br>
+              Mob. <span class="bold">{{supplier?.contacts?.join(', ')}}</span>
+            </div>
+            <div class="block-cell" style="height: 50%;">
+              Buyer (Bill to)
+              <br/>
+              <span class="bold x-large">
+                M/s. {{buyer?.name}}
+              </span>
+              <br>
+              {{buyer?.address}}
+              <br>
+              State: {{GSTCode[_sStateCode]}}, &nbsp;&nbsp;Code: {{util.padNumber(_sStateCode,'0',2)}}<br>
+              GSTIN: <span class="bold">{{buyer?.GSTIN}}</span><br>
+            </div>
+          </div>
+          <div class="block col-55 " style="height: 100%;position: relative;" >
+            <table style="width: 100%;height: 100%;">
+              <tr>
+                <td><span class="top-left">Serial No.</span><span class="bold x-large">{{util.padNumber(billDetail?.srNo??0,'0',3)}}</span></td>
+                <td><span class="top-left">Date </span><span class="bold x-large">{{billDate | date:'dd-MMM-yyyy'}}</span></td>
+              </tr>
+              <tr>
+                <td><span class="top-left">9R No.</span><span class="bold">{{supplier?.mandiLicense}}({{supplier?.mandiCode}})/{{billDetail?.is9R2? '9-2':'9'}}/{{util.padNumber(billDetail?.ninerno??0,'0',5)}}</span></td>
+                <td><span class="top-left">Gate Pass No.</span><span *ngIf="billDetail?.gatepass !=0" class="bold">{{ supplier?.mandiLicense}}({{supplier?.mandiCode}})/GP/{{util.padNumber(billDetail?.gatepass??0,'0',5)}}</span></td>
+              </tr>
+              <tr>
+                <td><span class="top-left">Vehicle No.</span><span class="bold">{{billDetail?.vehicleNumber}}</span></td>
+                <td><span class="top-left">Agent </span><span class="bold">{{billDetail?.agent}}</span></td>
+              </tr>
+              <tr>
+                <td><span class="top-left">LR/RR No.</span><span *ngIf="billDetail?.rrno" class="bold">{{util.padNumber(billDetail?.rrno??0,'0',5)}}</span></td>
+                <td><span class="top-left">Transportor Name</span><span class="bold">{{billDetail?.transporterName}}</span></td>
+              </tr>
+              <tr>
+                <td><span class="top-left">Total Freight</span><span *ngIf="billDetail?.totalFreight!=0" class="bold">{{billDetail?.totalFreight|currency:'INR'}}</span></td>
+                <td><span class="top-left">Due Feight</span><span *ngIf="billDetail?.dueFreight" class="bold">{{billDetail?.dueFreight|currency:'INR'}}</span></td>
+              </tr>
+             
+            </table>
+            
+          </div>
+        </div>
+        <div class="detail" style="width: 100%; height: 466px;border-bottom: 1px solid black;">
+          <div class="block" style="width: 100%;height: 100%;">
+            <table style="text-align: center;height: 100%;">
+              <tr style="height: 20px;font-size: smaller;font-weight: bold;">
+                <td style="width: 5%;border-left: none;">Sr. No.</td>
+                <td style="width: 25%;">Name of Particulars</td>
+                <td style="width: 10%;">HSN <br>ACS</td>
+                <td style="width: 10%;">Bags</td>
+                <td style="width: 10%;">Packing</td>
+                <td style="width: 11%;">Weight</td>
+                <td style="width: 11%;">Rate</td>
+                <td style="width: 18%;">Value of Supply</td>
+              </tr>
+              <tr style="vertical-align: top;height: 20px;">
+                <td style="width: 5%;border-bottom: none;border-left: none;">1</td>
+                <td style="width: 25%;border-bottom: none;">{{billDetail.items[0].name}}</td>
+                <td style="width: 10%;border-bottom: none;">{{util.enumVal(HSNS,billDetail.items[0]?.name)}}</td>
+                <td style="width: 10%;border-bottom: none;">{{billDetail.items[0]?.bags}}</td>
+                <td style="width: 10%;border-bottom: none;">{{billDetail.items[0]?.packing}} with bags in kg.</td>
+                <td style="width: 11%;border-bottom: none;">{{billDetail.items[0]?.weight}}</td>
+                <td style="width: 11%;border-bottom: none;">{{billDetail.items[0]?.rate}}</td>
+                <td style="width: 18%;border-bottom: none;">{{billDetail.items[0]?.weight * billDetail?.items[0]?.rate}}</td>
+              </tr>
+             
+              <tr style="vertical-align: top;">
+                <td style="width: 5%;border-left: none;"></td>
+                <td style="width: 25%;"></td>
+                <td style="width: 10%;"></td>
+                <td style="width: 10%;"></td>
+                <td style="width: 10%;"></td>
+                <td style="width: 11%;"></td>
+                <td style="width: 11%;"></td>
+                <td style="width: 18%;"></td>
+              </tr>
+              
+              <tr style="height: 30px;">
+                <td style="width: 72%;border-left: none;" colspan="6">
+                    <span class="xs-small top-left" style="display: flex;width: 100%;">Amount Chargable</span>
+                    <span class="bold left" *ngIf="billDetail?.items[0].rate !=0 && billDetail?.items[0].weight != 0" style="font-style: italic;">INR {{util.convertToRupeesInWords(billDetail?.items[0].weight * billDetail?.items[0].rate)}}
+                    </span>
+                </td>
+                <td style="width: 12%;"> <span class="bold">G. Total</span></td>
+                <td style="width: 16%;"> <span *ngIf="billDetail?.items[0].rate !=0 && billDetail?.items[0].weight != 0" class="bold">{{billDetail?.items[0].weight * billDetail?.items[0].rate |currency:'INR'}}</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="footer">
+          <div style="width: 100%;height: 120px; border-bottom: 1px solid black;">
+            <div class="block col-50" style="height: 100%;border-right: 1px solid black;">
+              <div class="block-cell" style="height: 100%;padding: 4px;font-size: smaller;">
+                <span class="bold">Terms & Conditions</span><br>
+                <ol>
+                  <li>
+                    Payment should be made by RTGS/NEFT
+                  </li>
+                  <li>
+                    Interest will be charged @2% if the payment will not be made in 3 days.
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <div class="block col-50" style="height: 100%;">
+              <table>
+                <tr>
+                  <td colspan="2" >
+                    <span class="bold" style="text-align: center;">Bank Detail</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bank Name</td>
+                  <td><span class="bold left">{{supplier?.bankDetail?.name}}</span></td>
+                </tr>
+                <tr>
+                  <td>Account No.</td>
+                  <td><span class="bold left">{{supplier?.bankDetail?.accountNo}}</span></td>
+                </tr>
+                <tr>
+                  <td>Branch & IFSC Code</td>
+                  <td><span class="bold left">{{supplier?.bankDetail?.branch}} & {{supplier?.bankDetail?.ifsc}}</span></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div style="width: 100%;height: 100px;">
+            <div class="block col-55" style="height: 100%; border-right: 1px solid black;">
+              <div class="block-cell" style="height: 100%;padding: 4px;">
+                <div class="v-center-align" style="font-size: smaller;">
+                  <span style="text-decoration: underline;">
+                    Declaration
+                  </span><br>
+                  We declare that this invoice shows the actual price of the goods
+                  described and that all particulars are true and correct.
+                </div>
+              </div>
+            </div>
+            <div class="block col-45" style="height: 100%;">
+              <div class="block-cell" style="height: 100%;padding: 4px;">
+                <span class="bold top-right">for M/s {{supplier?.name}}</span>
+                <span class="bottom-right">Authorised Signatory</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div *ngIf="buyer.isLocal">
+        <div  style="display: inline-block; text-align: center;width: 100%;">** Note: Bags are provided by Buyer Party **</div>   
+      </div>
+       
+    </div>
+    </div>
