@@ -51,11 +51,11 @@
             <table style="width: 100%;height: 100%;">
               <tr>
                 <td><span class="top-left">Serial No.</span><span class="bold x-large">{{util.padNumber(billDetail?.srNo??0,'0',3)}}</span></td>
-                <td><span class="top-left">Date </span><span class="bold x-large">{{billDate | date:'dd-MMM-yyyy'}}</span></td>
+                <td><span class="top-left">Date </span><span class="bold x-large">{{billDetail?.date | date:'dd-MMM-yyyy'}}</span></td>
               </tr>
               <tr>
-                <td><span class="top-left">9R No.</span><span class="bold">{{supplier?.mandiLicense}}({{supplier?.mandiCode}})/{{billDetail?.is9R2? '9-2':'9'}}/{{util.padNumber(billDetail?.ninerno??0,'0',5)}}</span></td>
-                <td><span class="top-left">Gate Pass No.</span><span *ngIf="billDetail?.gatepass !=0" class="bold">{{ supplier?.mandiLicense}}({{supplier?.mandiCode}})/GP/{{util.padNumber(billDetail?.gatepass??0,'0',5)}}</span></td>
+                <td><span class="top-left">9R No.</span><span class="bold">{{supplier?.mandiLicense}}({{supplier?.mandiCode}})/{{billDetail?.is9R2? '9-2':'9'}}/{{joinPaddString(billDetail?.ninerno)}}</span></td>
+                <td><span class="top-left">Gate Pass No.</span><span *ngIf="billDetail?.gatepass.trim() !=''" class="bold">{{ supplier?.mandiLicense}}({{supplier?.mandiCode}})/GP/{{joinPaddString(billDetail?.gatepass)}}</span></td>
               </tr>
               <tr>
                 <td><span class="top-left">Vehicle No.</span><span class="bold">{{billDetail?.vehicleNumber}}</span></td>
@@ -83,21 +83,34 @@
                 <td style="width: 10%;">HSN <br>ACS</td>
                 <td style="width: 10%;">Bags</td>
                 <td style="width: 10%;">Packing</td>
-                <td style="width: 11%;">Weight</td>
+                <td style="width: 11%;">Weight <br>(In Quintal)</td>
                 <td style="width: 11%;">Rate</td>
                 <td style="width: 18%;">Value of Supply</td>
               </tr>
-              <tr style="vertical-align: top;height: 20px;">
+              <tr style="vertical-align: top;height: 20px;" *ngFor="let item of billDetail.items; index as i;" >
+                
+                  <td style="width: 5%;border-bottom: none;border-left: none;"><span *ngIf="item?.name != null" >{{i+1}}</span></td>
+                  <td style="width: 25%;border-bottom: none;"><span *ngIf="item?.name != null" >{{item.name}}</span></td>
+                  <td style="width: 10%;border-bottom: none;"><span *ngIf="item?.name != null" >{{util.enumVal(HSNS,item?.name)}}</span></td>
+                  <td style="width: 10%;border-bottom: none;"><span *ngIf="item?.name != null" >{{item?.bags}}</span></td>
+                  <td style="width: 10%;border-bottom: none;"><span *ngIf="item?.name != null" >{{item?.packing}} <span style="font-style: italic;">kg with bags</span></span></td>
+                  <td style="width: 11%;border-bottom: none;"><span *ngIf="item?.name != null" >{{item?.weight|number:"0.3-3"}}</span></td>
+                  <td style="width: 11%;border-bottom: none;"><span *ngIf="item?.name != null" >{{item?.rate|number:"0.2-2"}}</span></td>
+                  <td style="width: 18%;border-bottom: none;"><span *ngIf="item?.name != null" >{{(item?.weight * item?.rate)|number:'0.2-2'}}</span></td>
+                
+                
+              </tr>
+              <!-- <tr style="vertical-align: top;height: 20px;">
                 <td style="width: 5%;border-bottom: none;border-left: none;">1</td>
                 <td style="width: 25%;border-bottom: none;">{{billDetail.items[0].name}}</td>
                 <td style="width: 10%;border-bottom: none;">{{util.enumVal(HSNS,billDetail.items[0]?.name)}}</td>
                 <td style="width: 10%;border-bottom: none;">{{billDetail.items[0]?.bags}}</td>
-                <td style="width: 10%;border-bottom: none;">{{billDetail.items[0]?.packing}} with bags in kg.</td>
-                <td style="width: 11%;border-bottom: none;">{{billDetail.items[0]?.weight}}</td>
-                <td style="width: 11%;border-bottom: none;">{{billDetail.items[0]?.rate}}</td>
-                <td style="width: 18%;border-bottom: none;">{{billDetail.items[0]?.weight * billDetail?.items[0]?.rate}}</td>
+                <td style="width: 10%;border-bottom: none;">{{billDetail.items[0]?.packing}} <span style="font-style: italic;">kg with bags</span></td>
+                <td style="width: 11%;border-bottom: none;">{{billDetail.items[0]?.weight|number:"0.3-3"}}</td>
+                <td style="width: 11%;border-bottom: none;">{{billDetail.items[0]?.rate|number:"0.2-2"}}</td>
+                <td style="width: 18%;border-bottom: none;">{{(billDetail.items[0]?.weight * billDetail?.items[0]?.rate)|number:'0.2-2'}}</td>
               </tr>
-             
+               -->
               <tr style="vertical-align: top;">
                 <td style="width: 5%;border-left: none;"></td>
                 <td style="width: 25%;"></td>
@@ -112,11 +125,11 @@
               <tr style="height: 30px;">
                 <td style="width: 72%;border-left: none;" colspan="6">
                     <span class="xs-small top-left" style="display: flex;width: 100%;">Amount Chargable</span>
-                    <span class="bold left" *ngIf="billDetail?.items[0].rate !=0 && billDetail?.items[0].weight != 0" style="font-style: italic;">INR {{util.convertToRupeesInWords(billDetail?.items[0].weight * billDetail?.items[0].rate)}}
+                    <span class="bold left" *ngIf="billDetail?.items[0].rate !=0 && billDetail?.items[0].weight != 0" style="font-style: italic;">INR {{util.convertToRupeesInWords(getTotalSum())}}
                     </span>
                 </td>
                 <td style="width: 12%;"> <span class="bold">G. Total</span></td>
-                <td style="width: 16%;"> <span *ngIf="billDetail?.items[0].rate !=0 && billDetail?.items[0].weight != 0" class="bold">{{billDetail?.items[0].weight * billDetail?.items[0].rate |currency:'INR'}}</span></td>
+                <td style="width: 16%;"> <span *ngIf="billDetail?.items[0].rate !=0 && billDetail?.items[0].weight != 0" class="bold">{{getTotalSum() |currency:'INR'}}</span></td>
               </tr>
             </table>
           </div>

@@ -37,6 +37,23 @@ export class SupplyReportComponent implements OnInit {
     this._bStateCode = this.buyer?.stateCode ?? 9;
   }
 
+  joinPaddString(value:string){
+    var _items = value.split(',');
+    for(let i=0;i<_items.length;i++){
+      _items[i] = bill.padNumber(parseInt(_items[i]),'0',5);
+    }
+    return _items.join(', ');
+  }
+  getTotalSum(){
+    var _total =0;
+     let _items = this.billDetail.items;
+     for(let i=0;i<_items.length;i++){
+       if(_items[i].rate !=0 && _items[i].weight ){
+        _total +=  _items[i].rate * _items[i].weight;
+       }
+     }
+     return _total;
+  }
   ngOnInit(): void {
   }
 

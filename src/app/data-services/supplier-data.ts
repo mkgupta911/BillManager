@@ -84,6 +84,70 @@ export class DataService{
                 ifsc:"SBIN0000206"
             }
         });
+		suppliers.push({
+            id:5,
+            name:"Anmol Traders",
+            address:"Naveen Galla Mandi Sthal Rath",
+            GSTIN: "09ESDPK4781D1ZL",
+            contacts:[9935235865],
+            mandiCode:199,
+            mandiLicense:43822424,
+            stateCode:9,
+            bankDetail:{
+                name:"Axis Bank",
+                accountNo:921020020263401,
+                branch:"Rath",
+                ifsc:"UTIB0002798"
+            }
+        });
+        suppliers.push({
+            id:6,
+            name:"Savita Traders",
+            address:"Naveen Galla Mandi Sthal Rath",
+            GSTIN: "09AJQPG4383H1ZS",
+            contacts:[8931983855,9450553952],
+            mandiCode:199,
+            mandiLicense:11451644,
+            stateCode:9,
+            bankDetail:{
+                name:"State Bank of India",
+                accountNo:10793205658,
+                branch:"Rath",
+                ifsc:"SBIN0000206"
+            }
+        });
+        suppliers.push({
+            id:7,
+            name:"Satyam Traders",
+            address:"Naveen Galla Mandi Sthal Rath",
+            GSTIN: "09AWEPK3353J1ZD",
+            contacts:[9453310905],
+            mandiCode:199,
+            mandiLicense:24693432,
+            stateCode:9,
+            bankDetail:{
+                name:"Axis Bank",
+                accountNo:922020044148756,
+                branch:"Rath",
+                ifsc:"UTIB0002798"
+            }
+        });
+        suppliers.push({
+            id:8,
+            name:"Hari Singh Ratan Singh",
+            address:"Naveen Galla Mandi Sthal Rath",
+            GSTIN: "09AAPFH7315C1ZC",
+            contacts:[9670820992],
+            mandiCode:199,
+            mandiLicense:31840390,
+            stateCode:9,
+            bankDetail:{
+                name:"State Bank of India",
+                accountNo:41850276599,
+                branch:"ADB Rath",
+                ifsc:"SBIN0001987"
+            }
+        });
         return suppliers;
     }
 }

@@ -28,8 +28,8 @@ export interface ISupplierInformation{
     date:Date = new Date();
     niner:string="9-2";
     is9R2:boolean = false;
-    ninerno:number=0;
-    gatepass:number=0;
+    ninerno:string=""
+    gatepass:string="";
     rrno:number=0;
     transporterName:string="";
     vehicleNumber:string='';
@@ -63,7 +63,8 @@ export interface ISupplierInformation{
     Invoice
   }
   export enum GSTStateCode{
-    "Uttar Pradesh"=9
+    "Uttar Pradesh"=9,
+    "Maharashtra"=27
   }
   export enum CopyType{
     Original,

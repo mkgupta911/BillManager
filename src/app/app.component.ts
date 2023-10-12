@@ -22,6 +22,8 @@ export class AppComponent {
     this.data=_data;
     this.suppliers = _data.getSupplierInformation();
     this.billDetail.items.push(new Item());
+    this.billDetail.items.push(new Item());
+    this.billDetail.items.push(new Item());
   }
   public _viewReport?:boolean=false;
   public _click?:boolean;

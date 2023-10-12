@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-2">
                             <section class="example-section">
-                                <mat-checkbox id="r92" name="r92" [(ngModel)]="buyer.isLocal" class="example-margin" color="primary">Local Buyer</mat-checkbox>
+                                <mat-checkbox id="lbuyer" name="lbuyer" [(ngModel)]="buyer.isLocal" class="example-margin" color="primary">Local Buyer</mat-checkbox>
                             </section>
                         </div>
                     </div>
@@ -151,67 +151,197 @@
                     </div>
                 </mat-card-header>
                 <mat-card-content>
-                   <div class="row">
-                    <div class="col-md-6">
-                        <mat-form-field class="full-width">
-                            <mat-label>JINS</mat-label>
-                            <input id="jins" name="jins" [(ngModel)]="billDetail.items[0].name" type="text"
-                                placeholder="Pick one"
-                                aria-label="Number"
-                                matInput
-                                [matAutocomplete]="auto">
-                            <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of HSNS | keyvalue" [value]="option.key">
-                                {{option.key}}
-                            </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field class="full-width">
-                            <input  id="HSN" name="HSN" [value]="util.enumVal(HSNS,billDetail.items[0]?.name)" matInput placeholder="HSN/SAC Code">
-                        </mat-form-field>
-                    </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-md-3">
+                   <div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <mat-form-field class="full-width">
-                                <input  id="bags" name="bags" [(ngModel)]="billDetail.items[0].bags" matInput placeholder="Bags">
-                            </mat-form-field>
-                       </div>
-                        <div class="col-md-3">
-                            <mat-form-field class="full-width">
-                                <input  id="pack" name="pack" [(ngModel)]="billDetail.items[0].packing" matInput placeholder="Packing in kg.">
+                                <mat-label>JINS</mat-label>
+                                <input id="jins" name="jins" [(ngModel)]="billDetail.items[0].name" type="text"
+                                    placeholder="Pick one"
+                                    aria-label="Number"
+                                    matInput
+                                    [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of HSNS | keyvalue" [value]="option.key">
+                                    {{option.key}}
+                                </mat-option>
+                                </mat-autocomplete>
                             </mat-form-field>
                         </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <input  id="HSN" name="HSN" [value]="util.enumVal(HSNS,billDetail.items[0]?.name)" matInput placeholder="HSN/SAC Code">
+                            </mat-form-field>
+                        </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="bags" name="bags" [(ngModel)]="billDetail.items[0].bags" matInput placeholder="Bags">
+                                </mat-form-field>
+                           </div>
+                            <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="pack" name="pack" [(ngModel)]="billDetail.items[0].packing" matInput placeholder="Packing in kg.">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="wght" name="wght" [(ngModel)]="billDetail.items[0].weight"  matInput placeholder="Weight">
+                                </mat-form-field>
+                             </div>
+                             <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="rate" name="rate" [(ngModel)]="billDetail.items[0].rate"  matInput placeholder="Rate">
+                                </mat-form-field>
+                             </div>
+                       </div>
+                       <div class="row">
                         <div class="col-md-3">
+                             <mat-form-field class="full-width">
+                                <mat-label>Value of Supply</mat-label>
+                                
+                                <input matInput readonly  [value]="(billDetail.items[0].weight*billDetail.items[0].rate)">
+                                
+                             </mat-form-field>
+                        </div>
+                        <div class="col-md-9">
                             <mat-form-field class="full-width">
-                                <input  id="wght" name="wght" [(ngModel)]="billDetail.items[0].weight"  matInput placeholder="Weight">
-                            </mat-form-field>
-                         </div>
-                         <div class="col-md-3">
-                            <mat-form-field class="full-width">
-                                <input  id="rate" name="rate" [(ngModel)]="billDetail.items[0].rate"  matInput placeholder="Rate">
-                            </mat-form-field>
-                         </div>
-                   </div>
-                   <div class="row">
-                    <div class="col-md-3">
-                         <mat-form-field class="full-width">
-                            <mat-label>Value of Supply</mat-label>
-                            
-                            <input matInput readonly  [value]="(billDetail.items[0].weight*billDetail.items[0].rate)">
-                            
-                         </mat-form-field>
+                                <mat-label>Value of Supply (in Words)</mat-label>
+                                <input matInput readonly  [value]="util.convertToRupeesInWords(billDetail.items[0].weight * billDetail.items[0].rate)">
+                             </mat-form-field>
+                       </div>
+                         
                     </div>
-                    <div class="col-md-9">
-                        <mat-form-field class="full-width">
-                            <mat-label>Value of Supply (in Words)</mat-label>
-                            <input matInput readonly  [value]="util.convertToRupeesInWords(billDetail.items[0].weight * billDetail.items[0].rate)">
-                         </mat-form-field>
                    </div>
-                     
-                </div>
+
+                   <div style="margin-top: 15px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <mat-label>JINS</mat-label>
+                                <input id="jins" name="jins" [(ngModel)]="billDetail.items[1].name" type="text"
+                                    placeholder="Pick one"
+                                    aria-label="Number"
+                                    matInput
+                                    [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of HSNS | keyvalue" [value]="option.key">
+                                    {{option.key}}
+                                </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <input  id="HSN" name="HSN" [value]="util.enumVal(HSNS,billDetail.items[1]?.name)" matInput placeholder="HSN/SAC Code">
+                            </mat-form-field>
+                        </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="bags" name="bags" [(ngModel)]="billDetail.items[1].bags" matInput placeholder="Bags">
+                                </mat-form-field>
+                           </div>
+                            <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="pack" name="pack" [(ngModel)]="billDetail.items[1].packing" matInput placeholder="Packing in kg.">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="wght" name="wght" [(ngModel)]="billDetail.items[1].weight"  matInput placeholder="Weight">
+                                </mat-form-field>
+                             </div>
+                             <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="rate" name="rate" [(ngModel)]="billDetail.items[1].rate"  matInput placeholder="Rate">
+                                </mat-form-field>
+                             </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-3">
+                             <mat-form-field class="full-width">
+                                <mat-label>Value of Supply</mat-label>
+                                
+                                <input matInput readonly  [value]="(billDetail.items[1].weight*billDetail.items[1].rate)">
+                                
+                             </mat-form-field>
+                        </div>
+                        <div class="col-md-9">
+                            <mat-form-field class="full-width">
+                                <mat-label>Value of Supply (in Words)</mat-label>
+                                <input matInput readonly  [value]="util.convertToRupeesInWords(billDetail.items[1].weight * billDetail.items[1].rate)">
+                             </mat-form-field>
+                       </div>
+                         
+                    </div>
+                   </div>
+
+                   <div style="margin-top: 15px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <mat-label>JINS</mat-label>
+                                <input id="jins" name="jins" [(ngModel)]="billDetail.items[2].name" type="text"
+                                    placeholder="Pick one"
+                                    aria-label="Number"
+                                    matInput
+                                    [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of HSNS | keyvalue" [value]="option.key">
+                                    {{option.key}}
+                                </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <input  id="HSN" name="HSN" [value]="util.enumVal(HSNS,billDetail.items[2]?.name)" matInput placeholder="HSN/SAC Code">
+                            </mat-form-field>
+                        </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="bags" name="bags" [(ngModel)]="billDetail.items[2].bags" matInput placeholder="Bags">
+                                </mat-form-field>
+                           </div>
+                            <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="pack" name="pack" [(ngModel)]="billDetail.items[2].packing" matInput placeholder="Packing in kg.">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="wght" name="wght" [(ngModel)]="billDetail.items[2].weight"  matInput placeholder="Weight">
+                                </mat-form-field>
+                             </div>
+                             <div class="col-md-3">
+                                <mat-form-field class="full-width">
+                                    <input  id="rate" name="rate" [(ngModel)]="billDetail.items[2].rate"  matInput placeholder="Rate">
+                                </mat-form-field>
+                             </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-3">
+                             <mat-form-field class="full-width">
+                                <mat-label>Value of Supply</mat-label>
+                                
+                                <input matInput readonly  [value]="(billDetail.items[2].weight*billDetail.items[2].rate)">
+                                
+                             </mat-form-field>
+                        </div>
+                        <div class="col-md-9">
+                            <mat-form-field class="full-width">
+                                <mat-label>Value of Supply (in Words)</mat-label>
+                                <input matInput readonly  [value]="util.convertToRupeesInWords(billDetail.items[2].weight * billDetail.items[2].rate)">
+                             </mat-form-field>
+                       </div>
+                         
+                    </div>
+                   </div>
                 </mat-card-content>
             </mat-card>
            <div>
