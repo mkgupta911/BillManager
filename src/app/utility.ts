@@ -51,7 +51,7 @@ export function camelCase(word:string){
 export function convertToRupeesInWords(value:number){
     let intPart = Math.floor(value);
     var frPart = parseFloat(((value - intPart).toFixed(2)).split('.')[1]);
-    console.log(frPart);
+    // console.log(frPart);
     let _paisa ="";
     if(frPart!=0){
       _paisa = camelCase(numberToWord(frPart)) + "Paisa";

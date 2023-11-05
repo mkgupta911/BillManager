@@ -148,6 +148,22 @@ export class DataService{
                 ifsc:"SBIN0001987"
             }
         });
+        suppliers.push({
+            id:9,
+            name:"Kishori Lal Gupta",
+            address:"Naveen Galla Mandi Sthal Rath",
+            GSTIN: "09ABAFK0684P1ZT",
+            contacts:[9936589035],
+            mandiCode:199,
+            mandiLicense:96368746,
+            stateCode:9,
+            bankDetail:{
+                name:"Axis Bank",
+                accountNo:922020044148743,
+                branch:"Rath",
+                ifsc:"UTIB0002798"
+            }
+        });
         return suppliers;
     }
 }

@@ -29,6 +29,7 @@ export class AppComponent {
   public _click?:boolean;
   logReport(){
     this.supplier= this.suppliers[this._id];
+    
     this._viewReport =true;
     this._click = true;
   }

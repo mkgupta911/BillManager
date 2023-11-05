@@ -56,15 +56,52 @@ export interface ISupplierInformation{
     Masoor = '0713',
     Gehu = '1001',
     Jau = '1003',
-    Moong = '0713'
+    Moong = '0713',
+    Dhan = '1006'
   }
   export enum BillType{
     BillOfSupply,
     Invoice
   }
   export enum GSTStateCode{
-    "Uttar Pradesh"=9,
-    "Maharashtra"=27
+    
+  
+    "Jammu & Kashmir" = 1,
+    "Himachal Pradesh" = 2,
+    "Punjab" = 3,
+    "Chandigarh" = 4,
+    "Uttarakhand" = 5,
+    "Haryana" = 6,
+    "Delhi" = 7,
+    "Rajasthan" = 8,
+    "Uttar Pradesh" = 9,
+    "Bihar" = 10,
+    "Sikkim" = 11,
+    "Arunachal Pradesh" = 12,
+    "Nagaland" = 13,
+    "Manipur" = 14,
+    "Mizoram" = 15,
+    "Tripura" = 16,
+    "Meghalaya" = 17,
+    "Assam" = 18,
+    "West Bengal" = 19,
+    "Jharkhand" = 20,
+    "Orissa" = 21,
+    "Chhattisgarh" = 22,
+    "Madhya Pradesh" = 23,
+    "Gujarat" = 24,
+    "Daman & Diu" = 25,
+    "Dadra & Nagar Haveli" = 26,
+    "Maharashtra" = 27,
+    "Andhra Pradesh (Old)" = 28,
+    "Karnataka" = 29,
+    "Goa" = 30,
+    "Lakshadweep" = 31,
+    "Kerala" = 32,
+    "Tamil Nadu" = 33,
+    "Puducherry" = 34,
+    "Andaman & Nicobar Islands" = 35,
+    "Telengana" = 36    
   }
   export enum CopyType{
     Original,
