@@ -164,6 +164,22 @@ export class DataService{
                 ifsc:"UTIB0002798"
             }
         });
+        suppliers.push({
+            id:10,
+            name:"Rishabh Traders",
+            address:"Naveen Galla Mandi Sthal Rath",
+            GSTIN: "09EVIPK1220F1ZU",
+            contacts:[9621548859],
+            mandiCode:199,
+            mandiLicense:42808562,
+            stateCode:9,
+            bankDetail:{
+                name:"State Bank of India",
+                accountNo:41652612553,
+                branch:"ADB Rath",
+                ifsc:"SBIN0001987"
+            }
+        });
         return suppliers;
     }
 }
