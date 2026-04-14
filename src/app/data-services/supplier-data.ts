@@ -6,7 +6,7 @@ export class DataService{
         let suppliers:ISupplierInformation[]=[];
         suppliers.push({
             id:0,
-            name:"Sanotsh Kumar Pramod Kumar",
+            name:"Santosh Kumar Pramod Kumar",
             address:"Naveen Galla Mandi Sthal Rath",
             GSTIN: "09CFGPG2002D1Z5",
             contacts:[6386424678, 7376798235],
