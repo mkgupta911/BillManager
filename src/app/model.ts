@@ -51,7 +51,8 @@ export interface ISupplierInformation{
   }
    
   export enum HSNS{
-    Matar='0713',
+    Matar='0713010',
+    HaraMatar='0713020',
     Chana = '0713',
     Masoor = '0713',
     Gehu = '1001',

@@ -180,6 +180,22 @@ export class DataService{
                 ifsc:"SBIN0001987"
             }
         });
+        suppliers.push({
+            id:11,
+            name:"Bundelkhand Trading Company",
+            address:"Naveen Galla Mandi Sthal Rath",
+            GSTIN: "09BRCPS9396D1Z6",
+            contacts:[9450835670,9140649074],
+            mandiCode:199,
+            mandiLicense:38909161,
+            stateCode:9,
+            bankDetail:{
+                name:"Axis Bank",
+                accountNo:925020001067969,
+                branch:"Rath",
+                ifsc:"UTIB0002798"
+            }
+        });
         return suppliers;
     }
 }
