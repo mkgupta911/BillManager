@@ -51,13 +51,13 @@ export interface ISupplierInformation{
   }
    
   export enum HSNS{
-    Matar='0713010',
-    HaraMatar='0713020',
-    Chana = '0713',
-    Masoor = '0713',
-    Gehu = '1001',
-    Jau = '1003',
-    Moong = '0713',
+    Matar='07131010',
+    HaraMatar='07131020',
+    Chana = '07132020',
+    Masoor = '07134000',
+    Gehu = '10019910',
+    Jau = '10031000',
+    Moong = '07133100',
     Dhan = '1006'
   }
   export enum BillType{
